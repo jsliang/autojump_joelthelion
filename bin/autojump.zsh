@@ -60,3 +60,36 @@ function jc {
         j $(pwd) ${@}
     fi
 }
+
+function jo {
+    if [[ -z "${FILEMGR}" ]]; then
+        echo "autojump: Please set a file manager with \$FILEMGR. For example:"
+        echo "$ echo 'export FILEMGR=\"open\"' >> ~/.zshrc; source ~/.zshrc # for Mac OS X Finder"
+        return
+    fi
+
+    # Cannot use =~ due to MacPorts zsh v4.2, see issue #125.
+    if [[ ${@} == -* ]]; then
+        autojump ${@}
+        return
+    fi
+
+    local new_path="$(autojump ${@})"
+    if [ -d "${new_path}" ]; then
+        echo -e "\\033[31m${new_path}\\033[0m"
+        $FILEMGR "${new_path}"
+    else
+        echo "autojump: directory '${@}' not found"
+        echo "Try \`autojump --help\` for more information."
+        false
+    fi
+}
+
+function jco {
+    if [[ ${@} == -* ]]; then
+        jo ${@}
+    else
+        jo $(pwd) ${@}
+    fi
+}
+

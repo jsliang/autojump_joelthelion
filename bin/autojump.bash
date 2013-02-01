@@ -11,6 +11,7 @@ _autojump()
 EOF
 }
 complete -F _autojump j
+complete -F _autojump jo
 
 _autojump_files()
 {
@@ -93,3 +94,35 @@ function jc {
         j $(pwd) ${@}
     fi
 }
+
+function jo {
+    if [[ -z "${FILEMGR}" ]]; then
+        echo "autojump: Please set a file manager with \$FILEMGR. For example:"
+        echo "$ echo 'export FILEMGR=\"nautilus\"' >> ~/.bashrc; source ~/.bashrc # for Gnome Desktop"
+        return
+    fi
+
+    if [[ ${@} =~ ^-{1,2}.* ]]; then
+        autojump ${@}
+        return
+    fi
+
+    new_path="$(autojump ${@})"
+    if [ -d "${new_path}" ]; then
+        echo -e "\\033[31m${new_path}\\033[0m"
+        $FILEMGR "${new_path}"
+    else
+        echo "autojump: directory '${@}' not found"
+        echo "Try \`autojump --help\` for more information."
+        false
+    fi
+}
+
+function jco {
+    if [[ ${@} == -* ]]; then
+        jo ${@}
+    else
+        jo $(pwd) ${@}
+    fi
+}
+
