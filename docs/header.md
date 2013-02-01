@@ -11,6 +11,16 @@ Jump to a previously visited subdirectory of the current working directory:
 
     jc bar
 
+
+Autojump can also be used to open a directory with `jo foo` and `jco bar`.
+They behave like `j foo` and `jc bar` except that they open the directory
+with a file manager.
+Refer to [Additional Configuration](#additional-configuration) to configure
+a file manager you prefer.
+
+    jo foo
+    jco bar
+
 Show all database entries and their respective key weights:
 
     j --stat

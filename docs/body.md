@@ -52,6 +52,20 @@ Options must be passed to 'autojump' and not the 'j' wrapper function.
 
         export AUTOJUMP_KEEP_SYMLINKS=1
 
+- Use a File Manager to Open Jumped-to Directories (used in `jo` and `jco`)
+
+    Autojump can be used to open a directory with `jo foo` and `jco bar`.
+    They behave like `j foo` and `jc bar` except that they open the directory
+    with the file manager you specified.
+
+    To use this feature, add the following environment vairable in your ~/.bashrc:
+
+        export AUTOJUMP_FILEMGR='nautilus'  # GNOME DESKTOP
+
+    or ~/.zshrc:
+
+        export AUTOJUMP_FILEMGR='open'      # Mac OS X Finder
+
 - Autocomplete Additional Commands (Bash only)
 
     Autojump can be used to autocomplete other commands (e.g. cp or vim). To use

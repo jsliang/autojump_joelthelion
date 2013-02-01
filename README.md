@@ -1,10 +1,8 @@
-NAME
-----
+## NAME
 
 autojump - a faster way to navigate your filesystem
 
-SYNOPSIS
---------
+## SYNOPSIS
 
 Jump to a previously visited directory that contains 'foo':
 
@@ -15,12 +13,20 @@ directory:
 
     jc bar
 
+Autojump can also be used to open a directory with `jo foo` and
+`jco bar`. They behave like `j foo` and `jc bar` except that they open
+the directory with a file manager. Refer to [Additional
+Configuration](#additional-configuration) to configure a file manager
+you prefer.
+
+    jo foo
+    jco bar
+
 Show all database entries and their respective key weights:
 
     j --stat
 
-DESCRIPTION
------------
+## DESCRIPTION
 
 autojump is a faster way to navigate your filesystem. It works by
 maintaining a database of the directories you use the most from the
@@ -28,8 +34,7 @@ command line. The `j --stat` command shows you the current contents of
 the database. Directories must be visited first before they can be
 jumped to.
 
-INSTALLATION
-------------
+## INSTALLATION
 
 ### REQUIREMENTS
 
@@ -86,7 +91,7 @@ Grab a copy of autojump:
 Run the installation script:
 
     cd autojump
-    ./install.sh [ --local ]
+    ./install.sh [ --local ] [ --zsh ]
 
 and follow on screen instructions.
 
@@ -110,8 +115,7 @@ and follow on screen instructions.
 If you keep getting `autojump: command not found` at the prompt,
 do:`unset PROMPT_COMMAND`. You can also restart your shell.
 
-DEVELOPMENT
------------
+## DEVELOPMENT
 
 The source code is primarily in `./bin/autojump`. Various shell wrapper
 scripts are also available in `./bin/`.
@@ -125,8 +129,7 @@ Unit tests are available in `./tests/`. Run unit tests with the command:
 
     make test
 
-OPTIONS
--------
+## OPTIONS
 
 Options must be passed to 'autojump' and not the 'j' wrapper function.
 
@@ -138,15 +141,13 @@ Options must be passed to 'autojump' and not the 'j' wrapper function.
 
     --version           show version information and exit
 
-INTERNAL OPTIONS
-----------------
+## INTERNAL OPTIONS
 
     -b, --bash          enclose directory with quotes to prevent errors
 
     --complete          used for tab completion
 
-ADDITIONAL CONFIGURATION
-------------------------
+## ADDITIONAL CONFIGURATION
 
 -   Enable ZSH Tab Completion
 
@@ -183,6 +184,22 @@ ADDITIONAL CONFIGURATION
 
         export AUTOJUMP_KEEP_SYMLINKS=1
 
+-   Use a File Manager to Open Jumped-to Directories (used in `jo` and
+    `jco`)
+
+    Autojump can be used to open a directory with `jo foo` and
+    `jco bar`. They behave like `j foo` and `jc bar` except that they
+    open the directory with the file manager you specified.
+
+    To use this feature, add the following environment vairable in your
+    \~/.bashrc:
+
+        export AUTOJUMP_FILEMGR='nautilus'  # GNOME DESKTOP
+
+    or \~/.zshrc:
+
+        export AUTOJUMP_FILEMGR='open'      # Mac OS X Finder
+
 -   Autocomplete Additional Commands (Bash only)
 
     Autojump can be used to autocomplete other commands (e.g. cp or
@@ -193,8 +210,7 @@ ADDITIONAL CONFIGURATION
 
     Changes require reloading autojump to take into effect.
 
-ADVANCED USAGE
---------------
+## ADVANCED USAGE
 
 -   Using Multiple Arguments
 
@@ -224,8 +240,7 @@ ADVANCED USAGE
 
     All negative key weights are purged automatically.
 
-KNOWN ISSUES
-------------
+## KNOWN ISSUES
 
 -   For bash users, autojump keeps track of directories as a pre-command
     hook by modifying $PROMPT\_COMMAND. If you overwrite
@@ -242,42 +257,36 @@ KNOWN ISSUES
     `-`. If you want to jump a directory called `--music`, try using
     `j music` instead of `j   --music`.
 
-FILES
------
+## FILES
 
 If installed locally, autojump is self-contained in *\~/.autojump/*.
 
 The database is stored in *$XDG\_DATA\_HOME/autojump/autojump.txt*.
 
-REPORTING BUGS
---------------
+## REPORTING BUGS
 
 For any usage related issues or feature requests please visit:
 
 *https://github.com/joelthelion/autojump/issues*
 
-MAILING LIST
-------------
+## MAILING LIST
 
 For release announcements and development related discussion please
 visit:
 
 *https://groups.google.com/forum/?fromgroups\#!forum/autojump*
 
-THANKS
-------
+## THANKS
 
 Special thanks goes out to: Pierre Gueth, Simon Marache-Francisco,
 Daniel Jackoway, and many others.
 
-AUTHORS
--------
+## AUTHORS
 
 autojump was originally written by Joël Schaerer, and currently
 maintained by William Ting.
 
-COPYRIGHT
----------
+## COPYRIGHT
 
 Copyright © 2012 Free Software Foundation, Inc. License GPLv3+: GNU GPL
 version 3 or later <http://gnu.org/licenses/gpl.html>. This is free

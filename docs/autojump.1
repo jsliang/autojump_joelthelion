@@ -4,7 +4,7 @@
 autojump - a faster way to navigate your filesystem
 .SS SYNOPSIS
 .PP
-Jump to a previously visited directory that contains \[aq]foo\[aq]:
+Jump to a previously visited directory that contains `foo':
 .IP
 .nf
 \f[C]
@@ -18,6 +18,20 @@ directory:
 .nf
 \f[C]
 jc\ bar
+\f[]
+.fi
+.PP
+Autojump can also be used to open a directory with \f[C]jo\ foo\f[] and
+\f[C]jco\ bar\f[].
+They behave like \f[C]j\ foo\f[] and \f[C]jc\ bar\f[] except that they
+open the directory with a file manager.
+Refer to Additional Configuration (#additional-configuration) to
+configure a file manager you prefer.
+.IP
+.nf
+\f[C]
+jo\ foo
+jco\ bar
 \f[]
 .fi
 .PP
@@ -38,8 +52,7 @@ database.
 Directories must be visited first before they can be jumped to.
 .SS OPTIONS
 .PP
-Options must be passed to \[aq]autojump\[aq] and not the \[aq]j\[aq]
-wrapper function.
+Options must be passed to `autojump' and not the `j' wrapper function.
 .IP
 .nf
 \f[C]
@@ -92,7 +105,7 @@ export\ AUTOJUMP_IGNORE_CASE=1
 .fi
 .RE
 .IP \[bu] 2
-Prevent Database Entries\[aq] Decay
+Prevent Database Entries' Decay
 .RS 2
 .PP
 Default behavior is to decay unused database entries slowly over time.
@@ -124,11 +137,37 @@ export\ AUTOJUMP_KEEP_SYMLINKS=1
 .fi
 .RE
 .IP \[bu] 2
+Use a File Manager to Open Jumped-to Directories (used in \f[C]jo\f[]
+and \f[C]jco\f[])
+.RS 2
+.PP
+Autojump can be used to open a directory with \f[C]jo\ foo\f[] and
+\f[C]jco\ bar\f[].
+They behave like \f[C]j\ foo\f[] and \f[C]jc\ bar\f[] except that they
+open the directory with the file manager you specified.
+.PP
+To use this feature, add the following environment vairable in your
+~/.bashrc:
+.IP
+.nf
+\f[C]
+export\ AUTOJUMP_FILEMGR=\[aq]nautilus\[aq]\ \ #\ GNOME\ DESKTOP
+\f[]
+.fi
+.PP
+or ~/.zshrc:
+.IP
+.nf
+\f[C]
+export\ AUTOJUMP_FILEMGR=\[aq]open\[aq]\ \ \ \ \ \ #\ Mac\ OS\ X\ Finder
+\f[]
+.fi
+.RE
+.IP \[bu] 2
 Autocomplete Additional Commands (Bash only)
 .RS 2
 .PP
-Autojump can be used to autocomplete other commands (e.g.
-cp or vim).
+Autojump can be used to autocomplete other commands (e.g.\ cp or vim).
 To use this feature, add the following environmental variable in your
 ~/.bashrc:
 .IP
@@ -145,7 +184,7 @@ Changes require reloading autojump to take into effect.
 Using Multiple Arguments
 .RS 2
 .PP
-Let\[aq]s assume the following database:
+Let's assume the following database:
 .IP
 .nf
 \f[C]
@@ -174,7 +213,7 @@ tab is required.
 Change Directory Weight
 .RS 2
 .PP
-To manually change a directory\[aq]s key weight, you can edit the file
+To manually change a directory's key weight, you can edit the file
 \f[I]$XDG_DATA_HOME/autojump/autojump.txt\f[].
 Each entry has two columns.
 The first is the key weight and the second is the path:
@@ -192,7 +231,7 @@ All negative key weights are purged automatically.
 For bash users, autojump keeps track of directories as a pre-command
 hook by modifying $PROMPT_COMMAND.
 If you overwrite $PROMPT_COMMAND in ~/.bashrc you can cause problems.
-Don\[aq]t do this:
+Don't do this:
 .RS 2
 .IP
 .nf
