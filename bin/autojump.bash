@@ -96,9 +96,9 @@ function jc {
 }
 
 function jo {
-    if [[ -z "${FILEMGR}" ]]; then
-        echo "autojump: Please set a file manager with \$FILEMGR. For example:"
-        echo "$ echo 'export FILEMGR=\"nautilus\"' >> ~/.bashrc; source ~/.bashrc # for Gnome Desktop"
+    if [[ -z "${AUTOJUMP_FILEMGR}" ]]; then
+        echo "autojump: Please set a file manager with \$AUTOJUMP_FILEMGR. For example:"
+        echo "$ echo 'export AUTOJUMP_FILEMGR=\"nautilus\"' >> ~/.bashrc; source ~/.bashrc # for Gnome Desktop"
         return
     fi
 
@@ -110,7 +110,7 @@ function jo {
     new_path="$(autojump ${@})"
     if [ -d "${new_path}" ]; then
         echo -e "\\033[31m${new_path}\\033[0m"
-        $FILEMGR "${new_path}"
+        $AUTOJUMP_FILEMGR "${new_path}"
     else
         echo "autojump: directory '${@}' not found"
         echo "Try \`autojump --help\` for more information."
