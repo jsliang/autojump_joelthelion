@@ -76,7 +76,7 @@ function jo {
 
     local new_path="$(autojump ${@})"
     if [ -d "${new_path}" ]; then
-        echo -e "\\033[31m${new_path}\\033[0m"
+        echo -e "\\033[31m${AUTOJUMP_FILEMGR} \"${new_path}\"\\033[0m"
         $AUTOJUMP_FILEMGR "${new_path}"
     else
         echo "autojump: directory '${@}' not found"
